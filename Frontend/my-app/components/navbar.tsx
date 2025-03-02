@@ -14,7 +14,7 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2">
             <Dog className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">PawID</span>
+            <span className="text-xl font-bold">Dogify</span>
           </Link>
         </div>
 
@@ -24,10 +24,13 @@ export function Navbar() {
             Home
           </Link>
           <Link href="/services" className="text-sm font-medium transition-colors hover:text-primary">
-            Services
+            About Us
           </Link>
           <Link href="/community" className="text-sm font-medium transition-colors hover:text-primary">
             Community
+          </Link>
+          <Link href="/community" className="text-sm font-medium transition-colors hover:text-primary">
+            Feedback
           </Link>
         </nav>
 
