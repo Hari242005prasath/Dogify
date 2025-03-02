@@ -40,23 +40,9 @@ export function HeroSection() {
                 <img
                   alt="User"
                   className="h-8 w-8 rounded-full border-2 border-background"
-                  src="/placeholder.svg?height=32&width=32"
+                  src="/images/star.jpg"
                 />
-                <img
-                  alt="User"
-                  className="h-8 w-8 rounded-full border-2 border-background"
-                  src="/placeholder.svg?height=32&width=32"
-                />
-                <img
-                  alt="User"
-                  className="h-8 w-8 rounded-full border-2 border-background"
-                  src="/placeholder.svg?height=32&width=32"
-                />
-                <img
-                  alt="User"
-                  className="h-8 w-8 rounded-full border-2 border-background"
-                  src="/placeholder.svg?height=32&width=32"
-                />
+                
               </div>
               <div className="text-muted-foreground">
                 Trusted by <span className="font-medium text-foreground">10,000+</span> dog lovers

@@ -37,7 +37,7 @@ export function CtaSection() {
                 <img
                   alt="Happy dog"
                   className="object-cover w-full h-full"
-                  src="/placeholder.svg?height=300&width=300"
+                  src="/images/happy.jpg"
                 />
               </div>
             </div>

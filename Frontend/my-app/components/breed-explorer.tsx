@@ -10,7 +10,7 @@ import { PawPrintIcon as Paw, Heart, Weight, Ruler } from "lucide-react"
 const breeds = [
   {
     name: "Labrador Retriever",
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/images/lab.jpg",
     temperament: ["Friendly", "Active", "Outgoing"],
     weight: "55-80 lbs",
     height: "21.5-24.5 inches",

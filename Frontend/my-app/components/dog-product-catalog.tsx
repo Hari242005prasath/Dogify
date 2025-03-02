@@ -36,10 +36,11 @@
         description:
         "High-protein, grain-free formula for adult dogs with real meat as the first ingredient",
         price: 54.99,
-        image: "/placeholder.svg?height=300&width=300",
+        image: "/images/image.png",
         category: "food",
         rating: 4.8,
         bestSeller: true,
+        
     },
     {
         id: "2",
@@ -47,7 +48,7 @@
         description:
         "Specially formulated for growing puppies with DHA for brain development",
         price: 48.99,
-        image: "/placeholder.svg?height=300&width=300",
+        image: "/images/grp.jpg",
         category: "food",
         rating: 4.7,
     },

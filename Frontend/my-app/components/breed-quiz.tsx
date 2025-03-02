@@ -8,17 +8,17 @@ import { motion } from "framer-motion"
 
 const quizQuestions = [
   {
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/images/lab.jpg",
     options: ["Labrador Retriever", "Golden Retriever", "German Shepherd", "Bulldog"],
     correctAnswer: "Labrador Retriever",
   },
   {
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/images/nep.jpg",
     options: ["Poodle", "Bichon Frise", "Maltese", "Shih Tzu"],
     correctAnswer: "Poodle",
   },
   {
-    image: "/placeholder.svg?height=300&width=300",
+    image: "/images/po.jpg",
     options: ["Beagle", "Basset Hound", "Dachshund", "Jack Russell Terrier"],
     correctAnswer: "Beagle",
   },
