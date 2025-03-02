@@ -11,7 +11,7 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Dog className="h-6 w-6 text-primary" />
-              <span className="text-xl font-bold">PawID</span>
+              <span className="text-xl font-bold">Dogify</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Helping dog lovers identify and learn about different breeds with advanced AI technology.
@@ -91,7 +91,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-12 border-t pt-8 text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} PawID. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Dogify. All rights reserved.</p>
           <div className="mt-2 flex justify-center space-x-4">
             <Link href="#" className="hover:text-primary">
               Terms of Service
