@@ -68,7 +68,7 @@ export function HeroSection() {
               <img
                 alt="Dog breed identification"
                 className="object-cover w-full h-full"
-                src="/placeholder.svg?height=400&width=400"
+                src="/images/gr.jpg"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white">
                 <div className="flex items-center justify-between">

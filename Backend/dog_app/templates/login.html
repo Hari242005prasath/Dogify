@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form | Brainy Cook</title>
+
+  {% load static %}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: url("{% static 'brainy/bg.jpg' %}") no-repeat center center/cover;
+    }
+    .wrapper {
+      width: 420px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 2px solid rgba(255, 255, 255, .2);
+      border-radius: 12px;
+      padding: 30px 40px;
+      color: #fff;
+    }
+    .wrapper h1 {
+      text-align: center;
+      font-size: 28px;
+    }
+    .input-box {
+      position: relative;
+      width: 100%;
+      margin: 20px 0;
+    }
+    .input-box input {
+      width: 100%;
+      height: 40px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid #fff;
+      color: #fff;
+      font-size: 16px;
+      padding-left: 10px;
+    }
+    .input-box input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .btn {
+      width: 100%;
+      height: 40px;
+      background: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      color: #000;
+    }
+    .messages {
+      color: #ff6347;
+      text-align: center;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <form method="POST">
+      {% csrf_token %}
+      <h1>Login</h1>
+
+      <div class="input-box">
+        <input type="text" name="username" placeholder="Username" required>
+      </div>
+
+      <div class="input-box">
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
+
+      <div class="remember-forgot">
+        <label><input type="checkbox"> Remember Me</label>
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="btn">Login</button>
+
+      {% if messages %}
+        <div class="messages">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="register-link">
+        <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

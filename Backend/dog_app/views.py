@@ -1,52 +1,64 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-import tensorflow as tf
-import numpy as np
-from tensorflow.keras.utils import load_img, img_to_array
 import os
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from PIL import Image
 
-# Load the trained model
-MODEL_PATH = "dog_app/tf_model.h5"
+# Load the model only once
+MODEL_PATH = "dog_app/weights.best.Resnet.hdf5"
+try:
+    model = load_model(MODEL_PATH)
+except Exception as e:
+    model = None
+    print(f"Error loading model: {e}")
 
+# Define the Dog Breeds (Ensure these match your model's output classes)
+BREEDS = ["Labrador", "Beagle", "Golden Retriever", "Bulldog", "Poodle", "German Shepherd"]
 
-def create_model():
-    model = tf.keras.Sequential([
-        tf.keras.layers.Conv2D(32, (3,3), activation='relu', input_shape=(224, 224, 3)),
-        tf.keras.layers.MaxPooling2D(2,2),
-        tf.keras.layers.Conv2D(64, (3,3), activation='relu'),
-        tf.keras.layers.MaxPooling2D(2,2),
-        tf.keras.layers.Conv2D(128, (3,3), activation='relu'),
-        tf.keras.layers.MaxPooling2D(2,2),
-        tf.keras.layers.Flatten(),
-        tf.keras.layers.Dense(512, activation='relu'),
-        tf.keras.layers.Dense(120, activation='softmax')  # Adjust based on your dataset
-    ])
-    return model
-
-model = create_model()
-model.load_weights(MODEL_PATH)
-
-# Class labels (ensure they match the training labels)
-id2label = {
-    "0": "Chihuahua", "1": "Japanese_spaniel", "2": "Maltese_dog",
-    "3": "Pekinese", "4": "Shih-Tzu", "5": "Blenheim_spaniel",
-    "6": "Papillon", "7": "Toy_terrier", "8": "Rhodesian_ridgeback",
-    "9": "Afghan_hound"
-    # Extend this with all 120 breeds
-}
-
-# Prediction view
+@api_view(["POST"])
 def predict_dog_breed(request):
-    if request.method == 'POST' and request.FILES.get('image'):
-        image_file = request.FILES['image']
-        image = load_img(image_file, target_size=(224, 224))
-        image_array = img_to_array(image) / 255.0
-        image_array = np.expand_dims(image_array, axis=0)
+    if "file" not in request.FILES:
+        return JsonResponse({"error": "No file uploaded"}, status=400)
+    
+    file = request.FILES["file"]
 
-        predictions = model.predict(image_array)
-        predicted_class = np.argmax(predictions[0])
-        breed_name = id2label.get(str(predicted_class), "Unknown Breed")
+    # Validate file type
+    try:
+        img = Image.open(file)
+        img.verify()  # Verify image integrity
+    except Exception:
+        return JsonResponse({"error": "Invalid image file"}, status=400)
 
-        return JsonResponse({"breed": breed_name})
+    # Save file temporarily
+    file_path = default_storage.save(f"uploads/{file.name}", ContentFile(file.read()))
+    img_path = default_storage.path(file_path)  # Get the full path
 
-    return JsonResponse({"error": "No image provided"}, status=400)
+    try:
+        # Load and preprocess the image
+        img = image.load_img(img_path, target_size=(224, 224))
+        img_array = image.img_to_array(img)
+        img_array = np.expand_dims(img_array, axis=0) / 255.0
+
+        # Ensure model is loaded
+        if model is None:
+            return JsonResponse({"error": "Model not loaded"}, status=500)
+
+        # Make a prediction
+        preds = model.predict(img_array)
+        breed_idx = np.argmax(preds)
+        predicted_breed = BREEDS[breed_idx]
+
+        return JsonResponse({"breed": predicted_breed, "confidence": float(np.max(preds))})
+
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
+
+    finally:
+        # Delete file after processing
+        if os.path.exists(img_path):
+            os.remove(img_path)

@@ -29,7 +29,21 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "classifier",
+]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+WSGI_APPLICATION = "dogify.wsgi.application"
 
 INSTALLED_APPS = [
     'django.contrib.admin',
