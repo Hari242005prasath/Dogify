@@ -6,7 +6,8 @@ from tensorflow.keras.utils import load_img, img_to_array
 import os
 
 # Load the trained model
-MODEL_PATH = r"C:\Users\HARIPRASATH\Downloads\Dogify\Backend\dog_app\..\tf_model.h5"
+MODEL_PATH = "dog_app/tf_model.h5"
+
 
 def create_model():
     model = tf.keras.Sequential([
