@@ -62,3 +62,52 @@ def predict_dog_breed(request):
         # Delete file after processing
         if os.path.exists(img_path):
             os.remove(img_path)
+from django.http import JsonResponse
+
+
+
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
+from django.contrib import messages
+
+
+
+
+def register_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save() 
+            messages.success(request, 'Registration complete! You can now login.')
+            return redirect('login')  
+        else:
+            messages.error(request, 'Error: Unable to register. Please check the form.')
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'register.html', {'form': form})
+
+
+
+
+def login_view(request):
+    print("🚀 login_view function triggered")  
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        print(f"🔍 Attempting login with: {username}, {password}")  # Debugging
+
+        user = authenticate(request, username="keerthi", password="keer12")
+        print(user)
+        if user is not None:
+            print("✅ Authentication successful!")  # Debugging
+            login(request, user)
+            return redirect('http://localhost:3000/')
+        else:
+            print("❌ Authentication failed!")  # Debugging
+            messages.error(request, 'Invalid credentials. Please try again.')
+
+    return render(request, 'login.html')
+

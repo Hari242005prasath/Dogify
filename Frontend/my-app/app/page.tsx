@@ -8,6 +8,8 @@ import { BreedQuiz } from "@/components/breed-quiz"
 
 
 export default function Home() {
+
+
   return (
     <div className="flex flex-col">
       <HeroSection />
@@ -17,6 +19,7 @@ export default function Home() {
       <TestimonialSection />
       <PricingSection />
       <CtaSection />
+  
     </div>
   )
 }

@@ -119,8 +119,7 @@ export default function DashboardPage() {
                     src={preview || "/placeholder.svg"}
                     alt="Dog preview"
                     className="h-full w-full object-contain"
-                    alt="Dog preview"
-                    className="h-full w-full object-contain"
+                    
                   />
                 ) : (
                   <>

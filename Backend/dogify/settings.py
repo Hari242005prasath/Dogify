@@ -38,6 +38,16 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "classifier",
+     "rest_framework",
+    "corsheaders"
+]
+MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware", 
+    "django.middleware.common.CommonMiddleware",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  
 ]
 
 MEDIA_URL = "/media/"
@@ -136,3 +146,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_URL = '/static/'
+
+# Add this line to fix the collectstatic error
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
+
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'dog_app' ,'static'),  
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # For collectsta

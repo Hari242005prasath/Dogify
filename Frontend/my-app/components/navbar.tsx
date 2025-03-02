@@ -40,12 +40,12 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:flex md:items-center md:gap-4">
-          <Link href="/login">
+          <Link href="http://127.0.0.1:8000/login">
             <Button variant="ghost" size="sm">
               Log in
             </Button>
           </Link>
-          <Link href="/signup">
+          <Link href="http://127.0.0.1:8000/register">
             <Button size="sm">Sign up</Button>
           </Link>
         </div>
