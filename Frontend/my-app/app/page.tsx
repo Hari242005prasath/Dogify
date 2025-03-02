@@ -6,6 +6,7 @@ import { CtaSection } from "@/components/cta-section"
 import { BreedExplorer } from "@/components/breed-explorer"
 import { BreedQuiz } from "@/components/breed-quiz"
 
+
 export default function Home() {
   return (
     <div className="flex flex-col">
@@ -19,4 +20,8 @@ export default function Home() {
     </div>
   )
 }
+
+
+
+
 

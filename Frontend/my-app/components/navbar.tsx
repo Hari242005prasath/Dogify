@@ -32,6 +32,11 @@ export function Navbar() {
           <Link href="/community" className="text-sm font-medium transition-colors hover:text-primary">
             Feedback
           </Link>
+          <Link href="/catalogue" className="text-sm font-medium transition-colors hover:text-primary">
+            Catalogue
+          </Link>
+          
+
         </nav>
 
         <div className="hidden md:flex md:items-center md:gap-4">
